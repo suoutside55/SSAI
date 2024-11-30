@@ -1,0 +1,172 @@
+<html><head><base href="." /><meta charset="UTF-8" /><title>文生图展示页面</title><style>
+/* 基本样式设置 */
+body {
+    font-family: '微软雅黑', sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+h1 {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5em;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+h1:hover {
+    transform: scale(1.05);
+}
+
+.pinyin {
+    font-size: 0.5em;
+    color: #666;
+    font-weight: normal;
+    display: block;
+    margin-top: 5px;
+}
+
+.content-box {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.content-box:hover {
+    transform: translateY(-5px);
+}
+
+.prompt-list {
+    background: linear-gradient(to right, #f8f9fa, #ffffff);
+    padding: 25px;
+    border-left: 4px solid #3498db;
+    margin: 20px 0;
+    border-radius: 0 10px 10px 0;
+}
+
+.prompt-list h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.prompt-list li {
+    margin: 12px 0;
+    color: #34495e;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 20px;
+}
+
+.prompt-list li::before {
+    content: "•";
+    color: #3498db;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.image-container {
+    width: 100%;
+    height: 400px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+.image-container:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* SVG占位图样式 */
+.placeholder-image {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, 
+        #f3f3f3 25%, 
+        #e6e6e6 25%, 
+        #e6e6e6 50%, 
+        #f3f3f3 50%, 
+        #f3f3f3 75%, 
+        #e6e6e6 75%, 
+        #e6e6e6 100%);
+    background-size: 20px 20px;
+    position: relative;
+    animation: gradient-shift 3s linear infinite;
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 40px 40px;
+    }
+}
+
+.placeholder-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #34495e;
+    font-size: 1.2em;
+    text-align: center;
+    background: rgba(255,255,255,0.9);
+    padding: 15px 25px;
+    border-radius: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+</style></head><body>
+
+<div class="content-box">
+    <h1>画龙点睛 <span class="pinyin">huà lóng diǎn jīng</span></h1>
+    
+    <div class="prompt-list">
+        <h3>生成提示词：</h3>
+        <ul>
+            <li>一位中国传统画师正在画一条威武的龙</li>
+            <li>画室内光线柔和，周围有传统的绘画工具</li>
+            <li>画师正在专注地为龙点上眼睛</li>
+            <li>画面风格：水墨画风格</li>
+            <li>氛围：庄重而神秘</li>
+        </ul>
+    </div>
+
+    <div class="image-container">
+        <div class="placeholder-image">
+            <div class="placeholder-text">AI生成的图片将显示在此处</div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 为列表项添加渐入动画
+    const listItems = document.querySelectorAll('.prompt-list li');
+    listItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateX(-20px)';
+        item.style.transition = 'all 0.3s ease';
+        setTimeout(() => {
+            item.style.opacity = '1';
+            item.style.transform = 'translateX(0)';
+        }, 100 * (index + 1));
+    });
+});
+</script>
+
+</body></html>
