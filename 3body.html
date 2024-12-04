@@ -1,0 +1,181 @@
+<html><head><base href="三体人物介绍">
+<meta charset="UTF-8">
+<title>三体人物图鉴</title>
+<style>
+body {
+    font-family: "Microsoft YaHei", sans-serif;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #000;
+    color: #0f0;
+}
+
+h1 {
+    color: #0f0;
+    text-align: center;
+    border-bottom: 2px solid #0f0;
+    padding-bottom: 10px;
+    text-shadow: 0 0 10px #0f0;
+}
+
+mark {
+    background-color: #002200;
+    color: #0f0;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+.character-card {
+    background-color: rgba(0, 50, 0, 0.3);
+    padding: 15px;
+    border-radius: 8px;
+    margin: 15px 0;
+    border: 1px solid #0f0;
+    box-shadow: 0 0 15px #0f0;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+}
+
+.character-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 25px #0f0;
+}
+
+dt {
+    font-weight: bold;
+    color: #0f0;
+    margin-top: 15px;
+    font-size: 1.2em;
+}
+
+dd {
+    margin-left: 20px;
+    color: #0f0;
+}
+
+ruby {
+    font-size: 1.1em;
+}
+
+.hidden-content {
+    display: none;
+    margin-top: 10px;
+    padding: 10px;
+    border-left: 3px solid #0f0;
+}
+
+.show-more {
+    color: #0f0;
+    cursor: pointer;
+    text-decoration: underline;
+    display: block;
+    margin-top: 10px;
+}
+
+.water-drop {
+    position: fixed;
+    right: 20px;
+    top: 50%;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle at 70% 70%, #0ff, #088);
+    border-radius: 50%;
+    animation: float 3s ease-in-out infinite;
+    cursor: pointer;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+</style>
+</head>
+<body>
+
+<h1>三体人物图鉴</h1>
+
+<div class="water-drop" onclick="alert('水滴是三体文明的终极武器')"></div>
+
+<h2>主要人物</h2>
+
+<dl>
+    <dt>叶文洁</dt>
+    <dd class="character-card">
+        <ruby>红岸基地<rt>Red Coast Base</rt></ruby>的首席科学家。
+        <div id="yeWenjie" class="hidden-content">
+            在文化大革命期间失去父亲，内心充满对人性的失望。作为红岸基地的核心科学家，她最终选择向宇宙发出地球文明的信号，导致了三体文明的到来。她的这个决定深刻地影响了整个人类文明的进程。
+        </div>
+        <span class="show-more" onclick="toggleContent('yeWenjie', this)">点击查看更多...</span>
+    </dd>
+
+    <dt>罗辑</dt>
+    <dd class="character-card">
+        <mark>面壁者</mark>计划中最成功的执行者。
+        <div id="luoji" class="hidden-content">
+            最初被选为面壁者时，他表现得漫不经心，但随着对三体威胁的深入了解，他逐渐成长为人类文明最重要的守护者。提出了著名的黑暗森林理论，并用此成功威慑三体文明。在之后的岁月里，他成为了被称为"破壁人"的存在。
+        </div>
+        <span class="show-more" onclick="toggleContent('luoji', this)">点击查看更多...</span>
+    </dd>
+
+    <dt>章北海</dt>
+    <dd class="character-card">
+        <em>星环防御系统</em>的指挥官。
+        <div id="zhangbeihai" class="hidden-content">
+            作为人类舰队的指挥官，他深知人类文明面临的威胁。在执行任务期间，他选择让自己进入休眠，最终成为了末日战役中人类文明的重要力量。他的战略眼光和坚定信念为人类文明的存续做出了重大贡献。
+        </div>
+        <span class="show-more" onclick="toggleContent('zhangbeihai', this)">点击查看更多...</span>
+    </dd>
+
+    <dt>史强</dt>
+    <dd class="character-card">
+        <strong>PDC</strong>安全部门负责人。
+        <div id="shiqiang" class="hidden-content">
+            曾经是一名警察，后来成为行星防御理事会的重要成员。性格直率，办事能力出众。在三体危机中始终站在人类立场，为保护地球文明做出了重要贡献。他是连接科学家群体和普通民众的重要纽带。
+        </div>
+        <span class="show-more" onclick="toggleContent('shiqiang', this)">点击查看更多...</span>
+    </dd>
+</dl>
+
+<script>
+function toggleContent(id, button) {
+    const content = document.getElementById(id);
+    if (content.style.display === 'none' || content.style.display === '') {
+        content.style.display = 'block';
+        button.textContent = '收起';
+    } else {
+        content.style.display = 'none';
+        button.textContent = '点击查看更多...';
+    }
+}
+
+document.querySelector('.water-drop').addEventListener('mouseover', function() {
+    this.style.transform = 'scale(1.2)';
+});
+document.querySelector('.water-drop').addEventListener('mouseout', function() {
+    this.style.transform = 'scale(1)';
+});
+
+const cards = document.querySelectorAll('.character-card');
+cards.forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        const synth = new (window.AudioContext || window.webkitAudioContext)();
+        const oscillator = synth.createOscillator();
+        const gainNode = synth.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(synth.destination);
+        
+        oscillator.type = 'sine';
+        oscillator.frequency.value = 440;
+        gainNode.gain.value = 0.1;
+        
+        oscillator.start();
+        setTimeout(() => oscillator.stop(), 100);
+    });
+});
+</script>
+
+</body>
+</html>
